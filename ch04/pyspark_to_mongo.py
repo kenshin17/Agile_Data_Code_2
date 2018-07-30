@@ -1,7 +1,11 @@
 import pymongo
 import pymongo_spark
+
+
 # Important: activate pymongo_spark.
 pymongo_spark.activate()
+
+
 
 on_time_dataframe = spark.read.parquet('data/on_time_performance.parquet')
 

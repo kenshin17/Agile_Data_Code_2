@@ -1,8 +1,13 @@
+from pyspark.context import SparkContext
+from pyspark.sql.session import SparkSession
+sc = SparkContext('local')
+spark = SparkSession(sc)
+
 # Loads CSV with header parsing and type inference, in one line!
 # Must use 'pyspark --packages com.databricks:spark-csv_2.10:1.4.0' for this to work
 on_time_dataframe = spark.read.format('com.databricks.spark.csv')\
   .options(header='true', inferschema='true')\
-  .load('data/On_Time_On_Time_Performance_2015.csv.bz2')
+  .load('/data/On_Time_On_Time_Performance_2015.csv')
 
 # Check out the data - very wide so hard to see
 on_time_dataframe.show()
