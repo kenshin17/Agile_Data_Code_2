@@ -1,10 +1,15 @@
+from pyspark.context import SparkContext
+from pyspark.sql.session import SparkSession
+sc = SparkContext('local')
+spark = SparkSession(sc)
+
 # Loads CSV with header parsing and type inference, in one line!
 on_time_dataframe = spark.read.format('com.databricks.spark.csv')\
   .options(
     header='true',
     treatEmptyValuesAsNulls='true',
   )\
-  .load('data/On_Time_On_Time_Performance_2015.csv.bz2')
+  .load('/data/On_Time_On_Time_Performance_2015.csv')
 on_time_dataframe.registerTempTable("on_time_performance")
 
 trimmed_cast_performance = spark.sql("""
