@@ -9,6 +9,14 @@ from pyspark.sql.types import StringType, IntegerType, FloatType, DoubleType, Da
 from pyspark.sql.types import StructType, StructField
 from pyspark.sql.functions import udf
 
+from pyspark.sql import SparkSession
+
+spark = SparkSession \
+    .builder \
+    .appName("Python Spark SQL basic example") \
+    .config("spark.some.config.option", "some-value") \
+    .getOrCreate()
+
 schema = StructType([
   StructField("ArrDelay", DoubleType(), True),     # "ArrDelay":5.0
   StructField("CRSArrTime", TimestampType(), True),    # "CRSArrTime":"2015-12-31T03:20:00.000-08:00"
@@ -26,7 +34,7 @@ schema = StructType([
 ])
 
 features = spark.read.json(
-  "data/simple_flight_delay_features.jsonl.bz2",
+  "../data/simple_flight_delay_features.jsonl.bz2",
   schema=schema
 )
 features.first()

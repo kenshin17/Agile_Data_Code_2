@@ -11,7 +11,7 @@ BROKERS='localhost:9092'
 TOPIC='test'
 
 conf = SparkConf().set("spark.default.parallelism", 1)
-#sc = SparkContext(appName = "Agile Data Science: PySpark Streaming 'Hello, World!'", conf = conf)
+sc = SparkContext(appName = "Agile Data Science: PySpark Streaming 'Hello, World!'", conf = conf)
 ssc = StreamingContext(sc, PERIOD)
 
 stream = KafkaUtils.createDirectStream(
@@ -19,7 +19,7 @@ stream = KafkaUtils.createDirectStream(
   [TOPIC],
   {
     "metadata.broker.list": BROKERS,
-    "group.id": "0",
+    # "group.id": "0",
   }
 )
 object_stream = stream.map(lambda x: json.loads(x[1]))
