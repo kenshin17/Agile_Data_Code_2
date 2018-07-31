@@ -82,7 +82,7 @@ if [ ! -d hadoop ]; then
   echo "Installing hadoop 2.7.3 into $PROJECT_HOME/hadoop ..."
 
   # May need to update this link... see http://hadoop.apache.org/releases.html
-  curl -Lko /tmp/hadoop-2.7.3.tar.gz http://apache.osuosl.org/hadoop/common/hadoop-2.7.3/hadoop-2.7.3.tar.gz
+  curl -Lko /tmp/hadoop-2.7.3.tar.gz https://archive.apache.org/dist/hadoop/core/hadoop-2.7.3/hadoop-2.7.3.tar.gz
 
   mkdir hadoop
   tar -xvf /tmp/hadoop-2.7.3.tar.gz -C hadoop --strip-components=1
@@ -239,7 +239,7 @@ echo "SPARK_CLASSPATH=$PROJECT_HOME/lib/snappy-java-1.1.2.6.jar" >> spark/conf/s
 # Install Kafka
 if [ -z `which kafka-server-start.sh` ] && [ ! -d kafka ]; then
   echo "Installing kafka 2.11-0.10.1.1 to $PROJECT_HOME/kafka ..."
-  curl -Lko /tmp/kafka_2.11-0.10.1.1.tgz http://www-us.apache.org/dist/kafka/0.10.1.1/kafka_2.11-0.10.1.1.tgz
+  curl -Lko /tmp/kafka_2.11-0.10.1.1.tgz https://archive.apache.org/dist/kafka/0.10.1.1/kafka_2.11-0.10.1.1.tgz
   mkdir kafka
   tar -xvzf /tmp/kafka_2.11-0.10.1.1.tgz -C kafka --strip-components=1
 else
